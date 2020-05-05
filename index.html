@@ -4,6 +4,59 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>我的导航</title>
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
-  <body></body>
+  <body>
+    <header></header>
+    <main>
+      <div class="wrapper" id="divWrapper"></div>
+    </main>
+    <footer></footer>
+    <script>
+      var keys = {
+        0: ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+        1: ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+        2: ["z", "x", "c", "v", "b", "n", "m"],
+        length: 3,
+      };
+      var hash = {
+        q: "qq.com",
+        w: "weibo.com",
+        e: "ele.me",
+        r: "renren.com",
+        t: "tianya.com",
+        y: "youtube.com",
+        u: "uc.com",
+        i: "iqiyi.com",
+        o: "opera.com",
+        p: undefined,
+        a: "acfun.tv",
+        s: "sohu.com",
+        z: "zhihu.com",
+        m: "www.mcdonalds.com.cn",
+      };
+      index = 0;
+      while (index < keys.length) {
+        div1 = document.createElement("div");
+        divWrapper.appendChild(div1);
+        row = keys[index]; //key[0],key[1],key[2]
+        index2 = 0;
+        while (index2 < row.length) {
+          //0~9 0~8 0~6
+          kbd1 = document.createElement("kbd");
+          kbd1.textContent = row[index2];
+          div1.appendChild(kbd1);
+          index2++;
+        }
+        index++;
+      }
+
+      document.onkeypress = function (asdf) {
+        key = asdf["key"]; //asdf代表了这个功能的所以信息，他的['key']表示了用户键入的值
+        website = hash[key];
+        //location.href = "http://" + website; //location指的是地址栏（模拟用户在地址栏输入），href：地址栏里的地址；但是要加http协议
+        window.open("http://" + website, "_blank"); //在新的窗口打开（window.open模拟用户新开页面），_blank：新窗口
+      };
+    </script>
+  </body>
 </html>
