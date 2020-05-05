@@ -13,13 +13,13 @@
     </main>
     <footer></footer>
     <script>
-      var keys = {
+      keys = {
         0: ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
         1: ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
         2: ["z", "x", "c", "v", "b", "n", "m"],
         length: 3,
       };
-      var hash = {
+      hash = {
         q: "qq.com",
         w: "weibo.com",
         e: "ele.me",
@@ -35,6 +35,13 @@
         z: "zhihu.com",
         m: "www.mcdonalds.com.cn",
       };
+      //取出localStorage中的zzz对应的 hash,若不为空则覆盖之前的hash ， 读档
+      hashInlocalStorage = JSON.parse(localStorage.getItem("zzz") || "null");
+      if (hashInlocalStorage) {
+        hash = hashInlocalStorage;
+      }
+
+      //遍历key，生成kbd标签
       index = 0;
       while (index < keys.length) {
         div1 = document.createElement("div");
@@ -45,6 +52,17 @@
           //0~9 0~8 0~6
           kbd1 = document.createElement("kbd");
           kbd1.textContent = row[index2];
+          button1 = document.createElement("button");
+          button1.textContent = "编辑";
+          button1.id = row[index2];
+          button1.onclick = function (qwe) {
+            key = qwe.target.id; //qwe['target']['id']  qwe.target是被点击button ：<button id="q">编辑</button>
+            ws = prompt("给我一个网址");
+            hash[key] = ws; //hash一旦变更，就setItem ，存档
+            localStorage.setItem("zzz", JSON.stringify(hash));
+            console.log(hash);
+          };
+          kbd1.appendChild(button1);
           div1.appendChild(kbd1);
           index2++;
         }
@@ -52,7 +70,7 @@
       }
 
       document.onkeypress = function (asdf) {
-        key = asdf["key"]; //asdf代表了这个功能的所以信息，他的['key']表示了用户键入的值
+        key = asdf["key"]; //asdf.key  asdf代表了这个功能的所以信息，他的['key']表示了用户键入的值
         website = hash[key];
         //location.href = "http://" + website; //location指的是地址栏（模拟用户在地址栏输入），href：地址栏里的地址；但是要加http协议
         window.open("http://" + website, "_blank"); //在新的窗口打开（window.open模拟用户新开页面），_blank：新窗口

@@ -7,12 +7,21 @@ a {
 }
 kbd {
   border: 1px solid red;
-  width: 2em;
-  height: 2em;
+  width: 4em;
+  height: 4em;
   display: inline-block; /*因为内联元素不接受宽高*/
   text-transform: uppercase;
+  position: relative;
 }
-
+kbd > button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: none;
+}
+kbd:hover > button {
+  display: inline-block;
+}
 #divWrapper > div:nth-child(2) {
   margin-left: 1em;
 }
