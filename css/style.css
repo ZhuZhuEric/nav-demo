@@ -23,12 +23,33 @@ kbd:hover > button {
   display: inline-block;
 }
 #divWrapper > div:nth-child(2) {
-  margin-left: 1em;
+  margin-left: -22px;
 }
 #divWrapper > div:nth-child(3) {
-  margin-left: 2em;
+  margin-left: -80px;
 }
 
 #divWrapper {
   text-align: center; /*其中的kbd均为内联元素，内联元素想要居中，在父元素上添加text-align=center*/
+}
+.key {
+  width: 50px;
+  height: 40px;
+  background: -webkit-linear-gradient(top, #292929 0%, #111111 100%);
+  border: 1px solid #373737;
+  color: #c5c5c5;
+  border-radius: 8px;
+  box-shadow: 0 0 0px 1px #1a1b1c, 0 0 0px 2px #1f2020, 0 2px 0 2px #373737;
+  /*第四位的1px 2px 为扩展半径 ；第二位的2px是向下距离 */
+  display: inline-flex; /*???*/
+  align-items: center; /*上下居中*/
+  justify-content: center; /*左右居中*/
+  font-size: 16px;
+  font-family: Helvetica;
+}
+.row {
+  margin: 20px;
+}
+.row .key {
+  margin: 0 10px;
 }

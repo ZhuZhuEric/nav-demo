@@ -45,6 +45,7 @@
       index = 0;
       while (index < keys.length) {
         div1 = document.createElement("div");
+        div1.className = "row"; //为每行div添加class，便于修改margin
         divWrapper.appendChild(div1);
         row = keys[index]; //key[0],key[1],key[2]
         index2 = 0;
@@ -52,6 +53,7 @@
           //0~9 0~8 0~6
           kbd1 = document.createElement("kbd");
           kbd1.textContent = row[index2];
+          kbd1.className = "key"; //为每个kdb添加class
           button1 = document.createElement("button");
           button1.textContent = "编辑";
           button1.id = row[index2];
