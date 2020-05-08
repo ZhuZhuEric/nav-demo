@@ -5,6 +5,20 @@
 a {
   text-decoration: none;
 }
+body {
+  background: gray url(../img/wall.jpg) no-repeat center center;
+  /*顺序可调。不重复，x居中，y居中;第六个属性一般不写，scroll和fix */
+  background-size: cover; /*考虑平铺方式，让背景图自适应,防止屏幕大太宽，图片小*/
+}
+/*因为main的高度太小，所以无法垂直居中；
+而body的高度由main决定，main的高度由wrapper决定。
+给main定下高度即可*/
+main {
+  display: flex; /*变成一个弹性盒*/
+  justify-content: center; /*左右居中*/
+  align-items: center; /*垂直居中*/
+  height: 100vh; /*vh即viewport height*/
+}
 kbd {
   border: 1px solid red;
   width: 4em;
@@ -31,6 +45,9 @@ kbd:hover > button {
 
 #divWrapper {
   text-align: center; /*其中的kbd均为内联元素，内联元素想要居中，在父元素上添加text-align=center*/
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  background-size: cover; /*让背景图自适应*/
 }
 .key {
   width: 50px;
@@ -41,9 +58,11 @@ kbd:hover > button {
   border-radius: 8px;
   box-shadow: 0 0 0px 1px #1a1b1c, 0 0 0px 2px #1f2020, 0 2px 0 2px #373737;
   /*第四位的1px 2px 为扩展半径 ；第二位的2px是向下距离 */
-  display: inline-flex; /*???*/
-  align-items: center; /*上下居中*/
-  justify-content: center; /*左右居中*/
+  /* display: inline-flex; ???
+  align-items: center; 上下居中
+  justify-content: center; 左右居中 */
+
+  /*可以取消，因为没有东西需要居中，每个都绝对定位*/
   font-size: 16px;
   font-family: Helvetica;
 }
@@ -52,4 +71,18 @@ kbd:hover > button {
 }
 .row .key {
   margin: 0 10px;
+  position: relative;
+}
+
+.key img {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  bottom: 2px;
+  left: 4px;
+}
+.key .text {
+  position: absolute;
+  top: 2px;
+  left: 4px; /*使其居左上角*/
 }

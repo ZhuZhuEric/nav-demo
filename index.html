@@ -36,7 +36,7 @@
         m: "www.mcdonalds.com.cn",
       };
       //取出localStorage中的zzz对应的 hash,若不为空则覆盖之前的hash ， 读档
-      hashInlocalStorage = JSON.parse(localStorage.getItem("zzz") || "null");
+      hashInlocalStorage = JSON.parse(localStorage.getItem("zzz") || "null"); //如果localstorage是空的，会有bug；改null即可
       if (hashInlocalStorage) {
         hash = hashInlocalStorage;
       }
@@ -52,18 +52,28 @@
         while (index2 < row.length) {
           //0~9 0~8 0~6
           kbd1 = document.createElement("kbd");
-          kbd1.textContent = row[index2];
+          span = document.createElement("span");
+          span.textContent = row[index2];
+          span.className = "text";
+          kbd1.appendChild(span);
+          //为调整qwe的位置，创建个span将qwe包起来，再在span上设置样式
           kbd1.className = "key"; //为每个kdb添加class
           button1 = document.createElement("button");
           button1.textContent = "编辑";
           button1.id = row[index2];
+          img = document.createElement("img");
+          if (hash[row[index2]]) {
+            img.src = "http://" + hash[row[index2]] + "/favicon.ico";
+          } else {
+          }
           button1.onclick = function (qwe) {
             key = qwe.target.id; //qwe['target']['id']  qwe.target是被点击button ：<button id="q">编辑</button>
             ws = prompt("给我一个网址");
             hash[key] = ws; //hash一旦变更，就setItem ，存档
-            localStorage.setItem("zzz", JSON.stringify(hash));
+            localStorage.setItem("zzz", JSON.stringify(hash)); //JSON.stringify(hash)放入localStorage中的zzz
             console.log(hash);
           };
+          kbd1.appendChild(img);
           kbd1.appendChild(button1);
           div1.appendChild(kbd1);
           index2++;
